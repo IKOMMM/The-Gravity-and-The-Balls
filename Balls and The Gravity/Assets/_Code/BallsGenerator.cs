@@ -4,46 +4,27 @@ using UnityEngine;
 
 public class BallsGenerator : MonoBehaviour
 {
-    [SerializeField] float ballGenerationTime = 0.25f;
-    [SerializeField] public int maxNumberToSpawn = 250;
-    public int numberToSpawn;
-    BallsPooler ballsPooler;
+    float ballGenerationTime = 0.25f;
+    public int maxNumberToSpawn = 250;
+    public int numberToSpawn = 0;
+    [SerializeField] BallsPooler ballsPooler;
 
     void Start()
     {
         ballsPooler = BallsPooler.Instance;
-        StartCoroutine(GeneratingCoroutine());
+        StartCoroutine(GenerateBallsInTime());
     }
-
-    IEnumerator GeneratingCoroutine()
+    IEnumerator GenerateBallsInTime()
     {
         while(maxNumberToSpawn > numberToSpawn)
         {
             Vector3 randomSpawnPosition = new Vector3(Random.Range(-40f, 40f), 0f, Random.Range(-40f, 40f));
-            ballsPooler.SpawnBallFromPool("BallGravity", randomSpawnPosition, Quaternion.identity);
-            Debug.Log("Spawn" + numberToSpawn);
+            ballsPooler.SpawnBallFromPool("Ball", randomSpawnPosition, Quaternion.identity);
             numberToSpawn++;
-            yield return new WaitForSeconds((float)ballGenerationTime);
+            yield return new WaitForSeconds(ballGenerationTime);
         }
-        
-    }
-
-    /*
-    IEnumerator GeneratingBallsCoroutine()
-    {
-        for(int numberToSpawn = 0; numberToSpawn >= maxNumberToSpawn; numberToSpawn++)
-        {
-            Vector3 randomSpawnPosition = new Vector3(Random.Range(-40f, 40f), 0f, Random.Range(-40f, 40f));
-            ballsPooler.SpawnBallFromPool("BallGravity", randomSpawnPosition, Quaternion.identity);
-            numberToSpawn++;
-
-            yield return new WaitForSeconds((float)ballGenerationTime);
-        }
-        
-    }
-    */
-        
-
+        yield return null;
+    }     
 }
 
 

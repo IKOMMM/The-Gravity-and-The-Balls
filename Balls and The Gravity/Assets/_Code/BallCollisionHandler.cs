@@ -9,7 +9,6 @@ public class BallCollisionHandler : MonoBehaviour
     Rigidbody thisObjecRigidbody;
     [SerializeField] GameObject mainSpaceToSpawnBalls;
     [SerializeField] BallsGenerator ballsGenerator;
-    //[SerializeField] BallsGenerator ballsGenerator;
 
     [SerializeField] int ballsAmountToExplosion = 49;
     [SerializeField] float defaultScale = 1f;
@@ -29,14 +28,13 @@ public class BallCollisionHandler : MonoBehaviour
         int otherId = other.GetInstanceID();
         int thisId = this.GetInstanceID();
 
-
         if (ballsGenerator.numberToSpawn == ballsGenerator.maxNumberToSpawn)
         {
             return;
         }
         else 
         {
-            if (other.CompareTag("BallGravity"))
+            if (other.CompareTag("Ball"))
             {
                 //If balls have the same mass, pickup mother ball with bigger ID.
                 if (colidedObjecRigidbody.mass == thisObjecRigidbody.mass)
@@ -95,7 +93,6 @@ public class BallCollisionHandler : MonoBehaviour
         }   
     }
     #endregion
-
     
     #region ExplosionMethods
     void ExplodeAfterTime(GameObject ball)
@@ -120,14 +117,13 @@ public class BallCollisionHandler : MonoBehaviour
             this.gameObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
             thisObjecRigidbody.detectCollisions = false;
 
-           TurnOnCollisionAfterTime(allChildrenThisBall);
+           StartCoroutine(TurnOnCollisionAfterTime(allChildrenThisBall));
         }
         else
         {
             return;
         }
-    }
-   
+    }   
     IEnumerator TurnOnCollisionAfterTime(Transform[] allChildrenThisBall)
     {
         Rigidbody arrayObjecRigidbody;
