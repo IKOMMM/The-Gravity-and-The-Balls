@@ -5,7 +5,6 @@
 - Every 1/4 second a ball is created in the camera field of view
 - Text counter shows how many balls have been created so far
 - Each ball has its own gravitational field - it attracts other balls
-- Each ball has its own gravitational field - it attracts other balls
 - In the event of a collision, two balls merge into one with a proportionally greater mass and gravitational field
 - If a ball has a mass corresponding to the mass of 50 original balls, it disintegrates disintegrates into as many balls as it is made of. These balls fly with a high speed in random directions with collision disabled for half a second
 - The balls stop forming when there are 250 balls in total - then their gravitational fields
