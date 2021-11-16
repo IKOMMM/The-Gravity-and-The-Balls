@@ -24,14 +24,11 @@ public class BallsPooler : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        FillTheBallsPool();
     }
     #endregion
 
-    #region Functions and Methods
-    void Start()
-    {
-        FillTheBallsPool();
-    }
+    #region Functions and Methods    
 
     void FillTheBallsPool()
     {

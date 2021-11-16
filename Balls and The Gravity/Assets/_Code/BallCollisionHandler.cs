@@ -117,7 +117,6 @@ public class BallCollisionHandler : MonoBehaviour
             this.gameObject.transform.localScale = new Vector3(defaultScale, defaultScale, defaultScale);
             thisObjecRigidbody.detectCollisions = false;
 
-           StartCoroutine(TurnOnCollisionAfterTime(allChildrenThisBall));
         }
         else
         {
@@ -132,7 +131,7 @@ public class BallCollisionHandler : MonoBehaviour
         {
             //Turn Back Collision
             arrayObjecRigidbody = allChildrenThisBall[i].GetComponent<Rigidbody>();            
-            arrayObjecRigidbody.detectCollisions = true;
+            arrayObjecRigidbody.detectCollisions = true;            
         }
         thisObjecRigidbody.detectCollisions = true;
 
